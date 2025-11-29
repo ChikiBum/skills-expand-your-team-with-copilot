@@ -51,9 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Theme toggle functions
   function initializeTheme() {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.documentElement.setAttribute("data-theme", savedTheme);
-      updateThemeIcon(savedTheme);
+    if (savedTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      updateThemeIcon("dark");
+    } else if (savedTheme === "light") {
+      // Light theme is the default, no attribute needed
+      updateThemeIcon("light");
     } else {
       // Check for system preference
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
