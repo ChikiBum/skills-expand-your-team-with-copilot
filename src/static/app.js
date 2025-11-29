@@ -536,11 +536,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const socialShareHtml = `
       <div class="social-share">
         <span class="share-label">Share:</span>
-        <button class="share-button share-twitter" data-activity="${name}" title="Share on Twitter">
-          𝕏
+        <button class="share-button share-twitter" data-activity="${name}" title="Share on X (Twitter)">
+          X
         </button>
         <button class="share-button share-facebook" data-activity="${name}" title="Share on Facebook">
-          f
+          fb
         </button>
         <button class="share-button share-email" data-activity="${name}" title="Share via Email">
           ✉
@@ -623,28 +623,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailBtn = activityCard.querySelector(".share-email");
 
     twitterBtn.addEventListener("click", () => {
-      const url = getShareUrl(name);
-      const text = getShareText(name, details.description);
       window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
         "_blank",
         "noopener,noreferrer"
       );
     });
 
     facebookBtn.addEventListener("click", () => {
-      const url = getShareUrl(name);
       window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
         "_blank",
         "noopener,noreferrer"
       );
     });
 
     emailBtn.addEventListener("click", () => {
-      const url = getShareUrl(name);
       const subject = `Check out ${name} at Mergington High School`;
-      const body = `${details.description}\n\nSchedule: ${formattedSchedule}\n\nLearn more: ${url}`;
+      const body = `${details.description}\n\nSchedule: ${formattedSchedule}\n\nLearn more: ${shareUrl}`;
       window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 
